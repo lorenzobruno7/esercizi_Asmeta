@@ -1,0 +1,60 @@
+--file C:\Users\Lorenzo Bruno\Desktop\UNIMI\Primo anno - secondo semestre\Modellazione ed Analisi di Sistemi\Esercizi\THE_FINALS\esame200922_Silos\silosMultiAgent.smv
+-- options: flatten? true
+MODULE main
+	VAR
+		bidonesScelto: 1..3; --monitored
+		quantitaAttuale_1: {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}; --controlled
+		quantitaAttuale_2: {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}; --controlled
+		quantitaAttuale_3: {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}; --controlled
+		quantitaVersare: 0..5; --monitored
+		statoGru_GRU: {RUNNING, STATOMACCHINARIO_UNDEF, WAITING}; --controlled
+		statoNastro_NASTRO: {RUNNING, STATOMACCHINARIO_UNDEF, WAITING}; --controlled
+	CONSTANTS GRU, GRU_UNDEF, GRU, NASTRO, NASTRO_UNDEF, NASTRO, STATOMACCHINARIO_UNDEF, RUNNING, WAITING;
+	ASSIGN
+		init(quantitaAttuale_1) := 1;
+		init(quantitaAttuale_2) := 1;
+		init(quantitaAttuale_3) := 1;
+		init(statoGru_GRU) := RUNNING;
+		init(statoNastro_NASTRO) := WAITING;
+		next(quantitaAttuale_1) :=
+			case
+				(((((bidonesScelto = 2) & (bidonesScelto = 1)) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5))) | (((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 2) & (bidonesScelto = 1)))) | (((bidonesScelto = 2) & (bidonesScelto = 1)) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)))) & (quantitaAttuale_2 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_2 + quantitaVersare);
+				(((((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & (bidonesScelto = 1)) | ((bidonesScelto = 1) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5)))) | ((bidonesScelto = 1) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)))) & (quantitaAttuale_1 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_1 + quantitaVersare);
+				(((((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 3) & (bidonesScelto = 1))) | (((bidonesScelto = 3) & (bidonesScelto = 1)) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5)))) | (((bidonesScelto = 3) & (bidonesScelto = 1)) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)))) & (quantitaAttuale_3 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_3 + quantitaVersare);
+				TRUE: quantitaAttuale_1;
+			esac;
+		next(quantitaAttuale_2) :=
+			case
+				(((((bidonesScelto = 2) & (bidonesScelto = 1)) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5))) | (((bidonesScelto = 2) & (bidonesScelto = 1)) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)))) | (((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 2) & (bidonesScelto = 1)))) & (quantitaAttuale_1 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_1 + quantitaVersare);
+				((((((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)) & ((bidonesScelto = 3) & (bidonesScelto = 2))) | (((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 3) & (bidonesScelto = 2)))) | ((((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5)) & ((bidonesScelto = 3) & (bidonesScelto = 2)))) & (quantitaAttuale_3 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_3 + quantitaVersare);
+				((((bidonesScelto = 2) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5))) | (((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & (bidonesScelto = 2))) | ((bidonesScelto = 2) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5)))) & (quantitaAttuale_2 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_2 + quantitaVersare);
+				TRUE: quantitaAttuale_2;
+			esac;
+		next(quantitaAttuale_3) :=
+			case
+				(((((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5)) & ((bidonesScelto = 3) & (bidonesScelto = 2))) | ((((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 3) & (bidonesScelto = 2))) | ((((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5)) & ((bidonesScelto = 3) & (bidonesScelto = 2))))) & (quantitaAttuale_2 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_2 + quantitaVersare);
+				(((bidonesScelto = 3) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5))) | (((bidonesScelto = 3) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5))) | ((bidonesScelto = 3) & ((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING)))))) & (quantitaAttuale_3 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_3 + quantitaVersare);
+				((((quantitaAttuale_3 <= 5) & ((bidonesScelto = 3) & (statoGru_GRU = RUNNING))) & ((bidonesScelto = 3) & (bidonesScelto = 1))) | ((((bidonesScelto = 3) & (bidonesScelto = 1)) & (((bidonesScelto = 1) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_1 <= 5))) | (((bidonesScelto = 3) & (bidonesScelto = 1)) & (((bidonesScelto = 2) & (statoGru_GRU = RUNNING)) & (quantitaAttuale_2 <= 5))))) & (quantitaAttuale_1 + quantitaVersare) in {-2147483647, 0, 1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9}: (quantitaAttuale_1 + quantitaVersare);
+				TRUE: quantitaAttuale_3;
+			esac;
+		next(statoGru_GRU) :=
+			case
+				(statoNastro_NASTRO = RUNNING): RUNNING;
+				(statoGru_GRU = RUNNING): WAITING;
+				TRUE: statoGru_GRU;
+			esac;
+		next(statoNastro_NASTRO) :=
+			case
+				(statoNastro_NASTRO = RUNNING): WAITING;
+				(statoGru_GRU = RUNNING): RUNNING;
+				TRUE: statoNastro_NASTRO;
+			esac;
+--CTL properties
+CTLSPEC NAME ctl0 := AG(((quantitaAttuale_3 <= 10) & (quantitaAttuale_1 <= 10) & (quantitaAttuale_2 <= 10)));
+CTLSPEC NAME ctl1 := AF(((statoNastro_NASTRO = RUNNING) -> AX(((quantitaAttuale_2 <= 8) & (quantitaAttuale_1 <= 8) & (quantitaAttuale_3 <= 8)))));
+CTLSPEC NAME ctl2 := A[(quantitaAttuale_1 = 1) U (statoGru_GRU = RUNNING)];
+CTLSPEC NAME ctl3 := AG(((quantitaAttuale_1 > 10) & (quantitaAttuale_3 > 10) & (quantitaAttuale_2 > 10)));
+CTLSPEC NAME ctl4 := AG(!((quantitaAttuale_1 > 10) & (quantitaAttuale_3 > 10) & (quantitaAttuale_2 > 10)));
+CTLSPEC NAME ctl5 := AG(EF(((quantitaAttuale_3 > 0) | (quantitaAttuale_2 > 0) | (quantitaAttuale_1 > 0))));
+--AsmetaL invariants
+CTLSPEC	AG(((quantitaAttuale_3 <= 10) & (quantitaAttuale_1 <= 10) & (quantitaAttuale_2 <= 10)));
