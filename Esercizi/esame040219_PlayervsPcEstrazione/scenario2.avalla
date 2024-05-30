@@ -1,0 +1,10 @@
+scenario scenario2
+load giocoEstrazione.asm
+
+set giocata(PC) := 5;
+set giocata(USER) := 4;
+
+step
+
+check saldo(PC) = 6 and saldo(USER) = 4;
+
