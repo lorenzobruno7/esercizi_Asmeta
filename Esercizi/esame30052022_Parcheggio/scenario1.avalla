@@ -1,0 +1,11 @@
+scenario scenario1
+//Uno che mostra il normale funzionamento del parcheggio.
+load parcheggio.asm
+
+set macchina := ABBONATO;
+set isEntrante := true;
+
+step
+
+check
+statoSemaforo(semaforo) = VERDE;
