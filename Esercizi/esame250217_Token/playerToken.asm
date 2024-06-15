@@ -5,7 +5,7 @@ import ../../Library/CTLlibrary
 
 /*
  ----Modello AsmetaL - 25 maggio 2017----
----Esame riuscito in data 31 maggio 2024 (Con 4 Player e verifica del primo e ultimo giocatore che termina i token)---
+---Esame riuscito in data 31 maggio 2024 (Con 5 Player e verifica del primo e ultimo giocatore che termina i token per prendere 30)---
 Tre giocatori attorno ad un tavolo. Inizialmente ogni giocatore ha 3 token. Di seguito la rappresentazione grafica:
 
 ******************************* 	
