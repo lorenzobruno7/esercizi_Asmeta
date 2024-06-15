@@ -2,6 +2,8 @@ asm lottoT
 
 import ../../Library/StandardLibrary
 import ../../Library/CTLlibrary
+
+//Esercizio preso dal gruppo telegram, svolgimento non mio ma comunque valido
  
  signature:
  
