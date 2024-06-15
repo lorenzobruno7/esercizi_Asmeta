@@ -5,7 +5,7 @@ import ../../Library/CTLlibrary
 
 /*
  ----Modello AsmetaL - 25 maggio 2017----
----Esame riuscito in data 31 maggio 2024 (Con 4 Player)---
+---Esame riuscito in data 31 maggio 2024 (Con 4 Player e verifica del primo e ultimo giocatore che termina i token)---
 Tre giocatori attorno ad un tavolo. Inizialmente ogni giocatore ha 3 token. Di seguito la rappresentazione grafica:
 
 ******************************* 	
@@ -71,7 +71,7 @@ par
 	numToken($currentPlayer) := numToken($currentPlayer) + 1
 endpar
 
-//Devo mettere una variabile hasToken o posso fare così la verifica?
+//Posso mettere una variabile hasToken o si può fare anche così la verifica
 rule r_PlayerMove($player in Player)=
 if(numToken($player) > 0) then
 	r_giveToPlate[$player]
@@ -93,9 +93,6 @@ invariant over numToken, plate : totalTokens = 9
 main rule r_Main =
 choose $player in Player with true do
 r_PlayerMove[$player]
-
-//Devo mettere un currentPlayer?
-
 
 default init s0:
 function plate = 0
