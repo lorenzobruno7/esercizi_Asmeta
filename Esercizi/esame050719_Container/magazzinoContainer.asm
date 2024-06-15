@@ -70,13 +70,6 @@ function probabilita($riga in Riga) =
 		case 5 : 5
 	endswitch
 	
-/*
-Non so se questa scrittura è giusta, l'idea era quella di fare questo di seguito ma da errore
- function isFull = forall $row in Row, $col in Column with true do
- 	if container($riga, $colonna) = EMPTY then false
- 	endif
- */
-
 function isMagazzinoPieno = (forall $riga in Riga, $colonna in Colonna with container($riga,$colonna) = FULL)
 
 rule r_riempiContainer($riga in Riga, $colonna in Colonna) =
