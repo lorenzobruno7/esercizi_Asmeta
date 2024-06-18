@@ -5,6 +5,8 @@
 
 * 🆘: Per qualsiasi correzione e/o richiesta aprire una Issue
 
+* ⭐: Se questa repo ti è stata d'aiuto puoi pensare di lasciarle una stella!
+
 Il PDF può essere utilizzato per studiare/ripete le domande di teoria. Per lo svolgimento degli esercizi dell'esame scritto vedere sul gruppo Telegram i contributi degli altri utenti
 
 
